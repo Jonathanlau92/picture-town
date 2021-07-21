@@ -1,0 +1,20 @@
+= form_for @pin do |f|
+  - if @pin.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@pin.errors.count, "error")} prohibited this pin from being saved:"
+      ul
+        - @pin.errors.full_messages.each do |message|
+          li = message
+  .field
+    = f.label :title
+    = f.text_field :title, class: "form-control", placeholder: "Add a title..."
+  .field
+    = f.label :content
+    = f.text_field :content, class: "form-control", placeholder: "Add a content..."
+  .field
+    = f.label :picture
+    = f.file_field :picture, class: "form-control"
+  .field
+    = f.label :images
+    = f.file_field :images, multiple: true, class: "form-control"
+  .actions = f.submit "Save", class: "btn btn-primary"

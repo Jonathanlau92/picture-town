@@ -1,0 +1,16 @@
+.container.mt-5
+  p#notice = notice
+
+  strong Title:
+  p
+    = @pin.title
+  strong Content:
+  p
+    = @pin.content
+
+  - @pin.images.each do |image|
+    = image_tag image
+
+  => link_to 'Edit', edit_pin_path(@pin)
+  '|
+  =< link_to 'Back', pins_path

@@ -1,0 +1,17 @@
+.container
+  h1.mt-5 Post your interest in the town!
+  .row
+    - @pins.each do |pin|
+      .col-sm-3
+        .card
+          .card-body
+            = image_tag pin.picture, size: "280x300" if pin.picture.present?
+            h5.card-title = pin.title
+            p.card-text = pin.content
+            = link_to 'Show', pin, class: "btn btn-sm indigo-button text-white me-2"
+            = link_to 'Edit', edit_pin_path(pin), class: "btn btn-sm teal-button text-white me-2"
+            = link_to "Download", rails_blob_path(pin.picture, disposition: "attachment"), class: "btn btn-sm text-white orange-button me-2" if pin.picture.present?
+            = link_to 'Destroy', pin, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-sm red-button text-white"
+  br
+
+  = link_to 'New Pin', new_pin_path
